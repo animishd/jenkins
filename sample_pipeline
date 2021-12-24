@@ -17,7 +17,8 @@ pipeline {
                 echo 'Deployment Stage'
             }
         }
-        stage('Creating User') { # To do this Step we need to update the Linux Sudoers (vi /etc/sudoers) with Jenkins user 
+        stage('Creating User') { 
+        // To do this Step we need to update the Linux Sudoers (vi /etc/sudoers) with Jenkins user 
             steps {
                 sh 'sudo useradd jenkins_creation1'
             }
