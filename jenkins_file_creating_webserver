@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Test') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('SettingUp Envi') {
+            steps {
+                sh 'sudo yum install httpd -y'
+            }
+        }
+        stage('Deploying') {
+            steps {
+                git branch: 'main', url: 'https://github.com/PriyankaGurjer/SampleHTML.git'
+            }
+        }
+        stage('ServiceStart') {
+            steps {
+                sh 'sudo systemctl enable httpd --now'
+            }
+        }
+        stage('CodePlacing') {
+            steps {
+                sh 'sudo cp /var/lib/jenkins/workspace/gitpipe/sample.html /var/www/html'
+            }
+        }
+    }
+}
